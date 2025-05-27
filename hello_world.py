@@ -146,4 +146,4 @@ with DAG(
     transformed_data_res = transform_data(raw_data_res)
     validate_data_res = validate_data(transformed_data_res)
     loading_summary = load_data(transformed_data_res, validate_data_res)
-    send_notification(loading_summary)
+    send_notification(loading_summary, validate_data_res)

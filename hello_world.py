@@ -120,7 +120,7 @@ with DAG(
         logging.info(f"Successfully loaded {len(users_to_load)} records")
         return loading_summary
 
-    @task()
+    @task(queue='remote')
     def send_notification(loading_summary, validation_results):
         """Send completion notification"""
         logging.info("Sending completion notification...")

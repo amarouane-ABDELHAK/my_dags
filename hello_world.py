@@ -120,8 +120,9 @@ with DAG(
         logging.info(f"Successfully loaded {len(users_to_load)} records")
         return loading_summary
 
-    @task(queue='remote')
+    @task()
     def send_notification(loading_summary, validation_results):
+        import duckdb
         """Send completion notification"""
         logging.info("Sending completion notification...")
         
@@ -139,7 +140,7 @@ with DAG(
         logging.info(message)
         # In real scenario, you might send email, Slack message, etc.
         
-        return "Notification sent successfully"
+        return f"Notification sent successfully {duckdb.__version__}"
 
 
     raw_data_res = extract_data()
